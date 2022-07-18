@@ -8,6 +8,7 @@
       system = "x86_64-linux";
       modules = [
         ./home-assistant.nix
+        ./mosquitto.nix
         ({ config, lib, modulesPath, pkgs, ... }: {
           imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
           boot.loader.grub.device = "/dev/sda";

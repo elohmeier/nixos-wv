@@ -15,6 +15,7 @@
       logbook = { };
       met = { };
       mobile_app = { };
+      mqtt.certificate = "/etc/ssl/certs/ca-certificates.crt";
       radio_browser = { };
       recorder.purge_keep_days = 14;
       ssdp = { };
@@ -36,15 +37,6 @@
         use_x_forwarded_for = true;
         trusted_proxies = [ "127.0.0.1" "::1" ];
       };
-
-      #mqtt = {
-      #  broker = "127.0.0.1";
-      #  port = "1883";
-      #  username = "hass";
-      #  password = "!secret mqtt_password";
-      #  discovery = "true";
-      #  discovery_prefix = "homeassistant";
-      #};
     };
   };
 
