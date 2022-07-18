@@ -7,6 +7,7 @@
     nixosConfigurations.hetznervm = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        ./home-assistant.nix
         ({ config, lib, modulesPath, pkgs, ... }: {
           imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
           boot.loader.grub.device = "/dev/sda";
@@ -54,14 +55,19 @@
             recommendedOptimisation = true;
             recommendedProxySettings = true;
             recommendedTlsSettings = true;
-            #virtualHosts."dsgambvo.fraam.de" = {
-            #  addSSL = true;
-            #  enableACME = true;
-            #  locations."/".extraConfig = ''
-            #    client_max_body_size 100M;
-            #    proxy_pass http://127.0.0.1:8000;
-            #  '';
-            #};
+            virtualHosts."def.lf42.de" = {
+              addSSL = true;
+              enableACME = true;
+              locations."/".extraConfig = ''
+                proxy_pass http://127.0.0.1:8123;
+                proxy_set_header Host $host;
+                proxy_redirect http:// https://;
+                proxy_http_version 1.1;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection $connection_upgrade;
+              '';
+            };
           };
 
           security.acme = {
