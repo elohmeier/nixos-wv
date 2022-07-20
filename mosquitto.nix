@@ -41,5 +41,8 @@
 
   networking.firewall.allowedTCPPorts = [ 8883 ];
 
-  security.acme.certs."def.lf42.de".keyType = "rsa2048"; # https://tasmota.github.io/docs/TLS/#limitations
+  security.acme.certs."def.lf42.de" = {
+    keyType = "rsa2048"; # https://tasmota.github.io/docs/TLS/#limitations
+    postRun = "systemctl restart mosquitto.service";
+  };
 }
