@@ -26,7 +26,7 @@
         auth_providers = [{ type = "homeassistant"; }];
         latitude = "53.633215";
         longitude = "10.0172642";
-        name = "Wilko";
+        name = "Home";
         time_zone = "Europe/Berlin";
         unit_system = "metric";
       };
