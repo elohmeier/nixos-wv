@@ -19,11 +19,11 @@
           networking = {
             useNetworkd = true;
             useDHCP = false;
-            hostName = "xahGh5gi";
+            hostName = "smarthomenix";
             interfaces.ens3 = {
               useDHCP = true;
               ipv6 = {
-                addresses = [{ address = "2a01:4f9:c011:6238::1"; prefixLength = 64; }];
+                addresses = [{ address = "2a01:4f8:c012:80b2::1"; prefixLength = 64; }];
               };
             };
             # reduce noise coming from www if
@@ -40,6 +40,7 @@
             passwordAuthentication = false;
           };
           users.users.root.openssh.authorizedKeys.keys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIETrOUFWleH/RZeJItrzg/shmEbMYW3lo4jF5QsQ7dZJ eddsa-key-RavenUSSD"
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIETizjNiMQOgdL2/Fv2NY4FDpP7wfmcP5faXK9ANHLM7 enno@nixos-mb4"
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM7OXq7COvJxoRQ2AQdo0HTJCITC6cPIZN/zs8XwCk4b enno@mb4"
             "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC110wwsmO+Tp4Su9YOqq3mgUvYXrRfLEUncEFWQKXFNlGuEvs/IjKmMfX0wSH1Qw0GXSQP3OJ9cVyfsqpRurnz1WZTtmpjDy9Yx6cMer4E8SfdO7hea9Jub8jjGMfyVX3HK81dA1ffSY9KLsh+7GWuiLnZHYjHlbS3laH8Aeza3Ln66LUSEEOr0NYx4MZNl20iAaaUShUmJGIhf5/P5IGDLuIjbL/3ct0xrmJ1tBAGWtmE4Lopn5nkyZTh/2AW3T+liDo3jnXD018npd4XrT/+USOKRao2b343mcCrN1E4/vXsw7lUkwydQ4ZkdXY0pfFufdU6LHzODvbdeXlgjn2fxLS0vN+wOzmZMBhMQQVsra87hzilXArW4xq87HDAQScv+jH4gg+d8ijpyL5MeUf57yXgpu4eh7mD9d1nr5D+nEGzWPCakswvixM3sQFSuhH1T8uMgSUBQBWTkLnzAOO6aU5DZu2l24ftczRbPHPnNxUBYFNC5upwPvrnsU+YiCoI3M3D6yzGp+AVsvtqj877E0y+MmVvS22p9sYiTT6iV7fz86v7mphxPmVQs38LGLdImMAxFLVe9p1g6HpuOZXq+Lkeh7Bz4dWbAO3u1LzY9s+yMx8U240QMShA1qUIYwLpEeM8IBqeXnEaTp3+WhbEKj9XgaNhfYhipMY+/Tv2zQ== cardno:000611343949"
@@ -72,7 +73,7 @@
           };
 
           security.acme = {
-            defaults.email = "enno.richter+acme@fraam.de";
+            defaults.email = "wilko.volckens@web.de";
             acceptTerms = true;
           };
         })
