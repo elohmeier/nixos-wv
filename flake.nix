@@ -9,6 +9,11 @@
         system = "x86_64-linux";
         modules = [ ./hetznervm ];
       };
+
+      rpi3-klipper = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [ ./rpi3-klipper ];
+      };
     };
   };
 }
