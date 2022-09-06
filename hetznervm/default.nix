@@ -46,7 +46,7 @@
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
     virtualHosts."def.lf42.de" = {
-      addSSL = true;
+      forceSSL = true;
       enableACME = true;
       locations."/".extraConfig = ''
         proxy_http_version 1.1;
