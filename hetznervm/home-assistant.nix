@@ -20,6 +20,7 @@
       recorder.purge_keep_days = 14;
       ssdp = { };
       system_health = { };
+      tado = { };
       tasmota = { };
 
       homeassistant = {
