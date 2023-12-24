@@ -1,0 +1,9 @@
+keys:
+  - &admin_enno age1e6gdd6c0nf5p47jhcq8dvrcyu4vmrzvg2kd75thsgyl7pzqemunq9mfl7e
+  - &server_srv1 age15dtkm2ze3ac09nrs2uwgnhtrzqx7e6cfdjekhepy5ke3h0z5sy8skhg9qx
+creation_rules:
+  - path_regex: secrets/srv1\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *admin_enno
+          - *server_srv1
