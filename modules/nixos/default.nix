@@ -15,7 +15,6 @@ let
         }
         inputs.disko.nixosModules.disko
         inputs.sops-nix.nixosModules.sops
-        inputs.srvos.modules.nixos.hardware-hetzner-cloud-arm
         inputs.srvos.modules.nixos.mixins-nginx
         inputs.srvos.modules.nixos.server
         self.nixosModules.default
@@ -64,10 +63,6 @@ in
       };
 
       environment.systemPackages = with pkgs; [ btop ncdu ];
-
-      # see https://github.com/nix-community/srvos/pull/330
-      boot.kernelParams = [ "console=tty" ];
-      boot.initrd.kernelModules = [ "virtio_gpu" ];
     });
 
     borgbackup = ./borgbackup.nix;
@@ -79,13 +74,19 @@ in
   flake.nixosConfigurations = {
     srv1 = nixosSystemFor "aarch64-linux" [
       (import ./disko/btrfs.nix { inherit lib; })
+      inputs.srvos.modules.nixos.hardware-hetzner-cloud-arm
       ./paperless.nix
       { system.stateVersion = "23.11"; }
     ];
 
-    hetznervm = nixosSystemFor "x86_64-linux" [
-      ./hetznervm
-      # { _module.args.nixinate = { host = "def.lf42.de"; sshUser = "root"; buildOn = "remote"; }; }
+    smarthome = nixosSystemFor "x86_64-linux" [
+      inputs.srvos.modules.nixos.hardware-hetzner-cloud
+      ./smarthome
+      ./autoupgrade.nix
+      {
+        system.stateVersion = "22.05";
+        system.autoUpgrade.flake = "github:elohmeier/nixos-wv#smarthome";
+      }
     ];
 
     rpi3-klipper = nixosSystemFor "aarch64-linux" [

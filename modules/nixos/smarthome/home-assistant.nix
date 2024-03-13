@@ -47,5 +47,4 @@
     touch /var/lib/hass/automations.yaml
     touch /var/lib/hass/scenes.yaml
   '';
-
 }

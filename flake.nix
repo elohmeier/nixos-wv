@@ -11,21 +11,26 @@
     nixos-anywhere = {
       inputs = {
         disko.follows = "disko";
-        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        nixos-stable.follows = "nixpkgs";
       };
       url = "github:nix-community/nixos-anywhere";
     };
-    nixpkgs.follows = "srvos/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    srvos.url = "github:nix-community/srvos";
+    srvos = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/srvos";
+    };
+    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
   outputs = inputs@{ self, flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
-      imports = [ ./modules ];
+      imports = [ ./modules inputs.treefmt-nix.flakeModule ];
     };
 }
