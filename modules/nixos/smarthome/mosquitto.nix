@@ -1,6 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
+  sops.secrets."hass.passwd".restartUnits = [ "mosquitto.service" ];
+  sops.secrets."tasmota.passwd".restartUnits = [ "mosquitto.service" ];
+
   services.mosquitto = {
     enable = true;
 
@@ -16,7 +19,7 @@
             "readwrite tele/#"
             "readwrite tasmota/#"
           ];
-          passwordFile = "/var/lib/mosquitto/tasmota.passwd";
+          passwordFile = config.sops.secrets."tasmota.passwd".path;
         };
       };
 
@@ -38,7 +41,7 @@
               "readwrite tele/#"
               "readwrite tasmota/#"
             ];
-            passwordFile = "/var/lib/mosquitto/hass.passwd";
+            passwordFile = config.sops.secrets."hass.passwd".path;
           };
         };
       }];

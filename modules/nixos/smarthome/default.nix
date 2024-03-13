@@ -5,6 +5,8 @@
     ./mosquitto.nix
   ];
 
+  sops.defaultSopsFile = ../../../secrets/smarthome.yaml;
+
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
   services.nginx = {
