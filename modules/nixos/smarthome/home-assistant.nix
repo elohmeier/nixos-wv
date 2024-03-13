@@ -4,24 +4,21 @@
   services.home-assistant = {
     enable = true;
 
+    extraComponents = [ "mqtt" "tasmota" "radio_browser" "fritzbox" "met" ];
+
     config = {
       automation = "!include automations.yaml";
       scene = "!include scenes.yaml";
 
       config = { };
       device_automation = { };
-      fritzbox = { };
       history = { };
       logbook = { };
-      met = { };
       mobile_app = { };
-      mqtt.certificate = "/etc/ssl/certs/ca-certificates.crt";
-      radio_browser = { };
       recorder.purge_keep_days = 14;
       ssdp = { };
       system_health = { };
       tado = { };
-      tasmota = { };
 
       homeassistant = {
         auth_providers = [{ type = "homeassistant"; }];
@@ -30,6 +27,7 @@
         name = "Home";
         time_zone = "Europe/Berlin";
         unit_system = "metric";
+        country = "DE";
       };
 
       http = {

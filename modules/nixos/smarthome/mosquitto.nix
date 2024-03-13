@@ -9,16 +9,6 @@
 
       # see https://tasmota.github.io/docs/MQTT/#mqtt-topic-definition
       users = {
-        hass = {
-          acl = [
-            "readwrite cmnd/#"
-            "readwrite stat/#"
-            "readwrite tele/#"
-            "readwrite tasmota/#"
-          ];
-          passwordFile = "/var/lib/mosquitto/hass.passwd";
-        };
-
         tasmota = {
           acl = [
             "readwrite cmnd/#"
@@ -34,7 +24,24 @@
         certfile = "/var/lib/acme/def.lf42.de/fullchain.pem";
         keyfile = "/var/lib/acme/def.lf42.de/key.pem";
       };
-    }];
+    }
+      {
+        port = 1883;
+        address = "127.0.0.1";
+
+        # see https://tasmota.github.io/docs/MQTT/#mqtt-topic-definition
+        users = {
+          hass = {
+            acl = [
+              "readwrite cmnd/#"
+              "readwrite stat/#"
+              "readwrite tele/#"
+              "readwrite tasmota/#"
+            ];
+            passwordFile = "/var/lib/mosquitto/hass.passwd";
+          };
+        };
+      }];
   };
 
   systemd.services.mosquitto.serviceConfig.SupplementaryGroups = "nginx"; # acme cert access
