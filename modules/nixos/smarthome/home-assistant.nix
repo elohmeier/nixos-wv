@@ -4,7 +4,14 @@
   services.home-assistant = {
     enable = true;
 
-    extraComponents = [ "mqtt" "tasmota" "radio_browser" "fritzbox" "met" ];
+    extraComponents = [
+      "fritzbox"
+      "met"
+      "mqtt"
+      "radio_browser"
+      "tado"
+      "tasmota"
+    ];
 
     config = {
       automation = "!include automations.yaml";
@@ -18,7 +25,6 @@
       recorder.purge_keep_days = 14;
       ssdp = { };
       system_health = { };
-      tado = { };
 
       homeassistant = {
         auth_providers = [{ type = "homeassistant"; }];
