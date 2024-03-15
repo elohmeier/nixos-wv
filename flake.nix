@@ -25,7 +25,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/srvos";
     };
-    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, flake-parts, ... }:
